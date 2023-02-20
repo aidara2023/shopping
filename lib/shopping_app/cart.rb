@@ -2,8 +2,8 @@ require_relative "item_manager"
 require_relative "ownable"
 
 class Cart
+  nclude Ownable
   include ItemManager
-  include Ownable
   def initialize(owner)
     self.owner = owner
     @items = []
@@ -26,8 +26,9 @@ class Cart
   def check_out
     return if owner.wallet.balance < total_amount
     @items.each do |item|
-      item.owner.wallet.deposit.(owner.wallet.withdraw(item.price))
-      item.owner = ownerend
+      item.owner.wallet.deposit(owner.wallet.withdraw(item.price))
+      item.owner = owner
+    end
       items.clear
   end
 
